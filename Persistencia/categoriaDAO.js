@@ -15,7 +15,7 @@ export default class CategoriaDAO{
                     codigo INT NOT NULL AUTO_INCREMENT,
                     descricao VARCHAR(50) NOT NULL,
                     CONSTRAINT pk_categoria PRIMARY KEY(codigo)
-                );
+                )
             `;
             await conexao.execute(sql);
             await conexao.release();

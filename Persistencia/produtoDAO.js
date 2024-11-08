@@ -20,7 +20,7 @@ export default class ProdutoDAO {
                 prod_precoVenda DECIMAL(10,2) NOT NULL,
                 prod_qtdEstoque INT NOT NULL DEFAULT 0,
                 prod_urlImagem VARCHAR(250),
-                prod_dataValidade VARCHAR(10) NOT NULL,
+                prod_dataValidade VARCHAR(12) NOT NULL,
                 fk_codigo_cat INT NOT NULL,
                 CONSTRAINT pk_produto PRIMARY KEY(prod_codigo),
                 CONSTRAINT fk_categoria FOREIGN KEY(fk_codigo_cat) REFERENCES categoria(codigo) 

@@ -18,7 +18,8 @@ export default async function conectar(){
             "password":process.env.BD_SENHA,
             "connectTimeout":60000,
             "waitForConnections":true,
-            "queueLimit":20
+            "queueLimit":20,
+            "connectionLimit": 20
         });
         return await global.poolConexoes.getConnection();
     }

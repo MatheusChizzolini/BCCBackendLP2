@@ -1,5 +1,4 @@
 import Fornecedor from "../Modelo/fornecedor";
-
 export default class FornecedorCtrl {
 
     gravar(requisicao, resposta) {

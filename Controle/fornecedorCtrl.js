@@ -1,4 +1,4 @@
-import Fornecedor from "../Modelo/fornecedor";
+import Fornecedor from "../Modelo/fornecedor.js";
 export default class FornecedorCtrl {
 
     gravar(requisicao, resposta) {

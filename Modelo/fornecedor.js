@@ -1,4 +1,4 @@
-import FornecedorDAO from "../Persistencia/fornecedorDAO";
+import FornecedorDAO from "../Persistencia/fornecedorDAO.js";
 export default class Fornecedor {
     // Atributos privados
     #id;

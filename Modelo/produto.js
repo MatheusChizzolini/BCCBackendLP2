@@ -1,5 +1,6 @@
 import ProdutoDAO from "../Persistencia/produtoDAO.js";
 import Categoria from "./categoria.js";
+import Fornecedor from "./fornecedor.js";
 export default class Produto{
     //atributos privados
     #codigo;
@@ -10,6 +11,7 @@ export default class Produto{
     #urlImagem;
     #dataValidade;
     #categoria
+    #fornecedor
 
     get codigo(){
         return this.#codigo;
@@ -77,9 +79,19 @@ export default class Produto{
         }
     }
 
+    get fornecedor(){
+        return this.#fornecedor
+    }
+
+    set fornecedor(novoFornecedor){
+        if (novoFornecedor instanceof Fornecedor){
+            this.#fornecedor = novoFornecedor;
+        }
+    }
+
     //construtor (criador de um produto)
     constructor(codigo=0, descricao="",precoCusto=0,precoVenda=0,qtdEstoque=0,
-                urlImagem="", dataValidade="", categoria={}){
+                urlImagem="", dataValidade="", categoria={}, fornecedor={}){
         this.#codigo=codigo;
         this.#descricao=descricao;
         this.#precoCusto=precoCusto;
@@ -88,22 +100,7 @@ export default class Produto{
         this.#urlImagem=urlImagem;
         this.#dataValidade=dataValidade;            
         this.#categoria = categoria;
-    }
-
-    //override do método toJSON
-    //o método toJSON é chamado automaticamente quando um produto
-    //precisar ser convertido no formato JSON
-    toJSON(){
-        return {
-            "codigo":this.#codigo,
-            "descricao":this.#descricao,
-            "precoCusto":this.#precoCusto,
-            "precoVenda":this.#precoVenda,
-            "qtdEstoque":this.#qtdEstoque,
-            "urlImagem":this.#urlImagem,
-            "dataValidade":this.#dataValidade,
-            "categoria":this.#categoria
-        }
+        this.#fornecedor = fornecedor;
     }
 
     async incluir(){

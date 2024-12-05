@@ -106,8 +106,9 @@ export default class ProdutoCtrl {
             const urlImagem = requisicao.body.urlImagem;
             const dataValidade = requisicao.body.dataValidade;
             const categoria = requisicao.body.categoria;
-            //validação de regra de negócio
+            const fornecedor = requisicao.body.fornecedor;
             const categ = new Categoria(categoria.codigo);
+            const forn = new Fornecedor(fornecedor.id);
             categ.consultar(categoria.codigo).then((lista) => {
                 if (lista.length > 0) {
                     //pseudo validação
@@ -117,7 +118,7 @@ export default class ProdutoCtrl {
                         //alterar o produto
                         const produto = new Produto(codigo,
                             descricao, precoCusto, precoVenda,
-                            qtdEstoque, urlImagem, dataValidade, categ);
+                            qtdEstoque, urlImagem, dataValidade, categ, forn);
                         produto.alterar()
                             .then(() => {
                                 resposta.status(200).json({

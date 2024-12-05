@@ -23,8 +23,10 @@ export default class ProdutoDAO {
                 prod_urlImagem VARCHAR(250),
                 prod_dataValidade VARCHAR(12) NOT NULL,
                 fk_codigo_cat INT NOT NULL,
+                forn_id INT NOT NULL,
                 CONSTRAINT pk_produto PRIMARY KEY(prod_codigo),
-                CONSTRAINT fk_categoria FOREIGN KEY(fk_codigo_cat) REFERENCES categoria(codigo)
+                CONSTRAINT fk_categoria FOREIGN KEY(fk_codigo_cat) REFERENCES categoria(codigo),
+                CONSTRAINT fk_fornecedor FOREIGN KEY(forn_id) REFERENCES fornecedor(forn_id)
             )
         `;
             await conexao.execute(sql);

@@ -99,20 +99,23 @@ export default class ProdutoDAO {
         const [linhas, campos] = await conexao.execute(sql, parametros);
         let listaProdutos = [];
         for (const linha of linhas) {
-            const categoria = new Categoria(linha['codigo'],linha["descricao"]);
-            const fornecedor = new Fornecedor(linha['id'],linha["nome"]);   
-            const produto = new Produto(
-                linha['prod_codigo'],
-                linha['prod_descricao'],
-                linha['prod_precoCusto'],
-                linha['prod_precoVenda'],
-                linha['prod_qtdEstoque'],
-                linha['prod_urlImagem'],
-                linha['prod_dataValidade'],
+            const categoria = new Categoria(linha.codigo,linha.descricao);
+            const fornecedor = new Fornecedor(linha.forn_id,linha.forn_nome); 
+            const produto = {
+                codigo:linha.prod_codigo,
+                descricao:linha.prod_descricao,
+                precoCusto:linha.prod_precoCusto,
+                precoVenda:linha.prod_precoVenda,
+                qtdEstoque:linha.prod_qtdEstoque,
+                urlImagem:linha.prod_urlImagem,
+                dataValidade:linha.prod_dataValidade,
                 categoria,
                 fornecedor
-            );
+            };
+            console.log(JSON.stringify(categoria));
+            console.log(JSON.stringify(fornecedor));
             listaProdutos.push(produto);
+            console.log(JSON.stringify(produto));
         }
         await conexao.release();
         return listaProdutos;

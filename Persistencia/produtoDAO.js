@@ -85,12 +85,14 @@ export default class ProdutoDAO {
         if (isNaN(parseInt(termo))) {
             sql = `SELECT * FROM produto p
                    INNER JOIN categoria c ON p.fk_codigo_cat = c.codigo
+                   INNER JOIN fornecedor f ON f.forn_id = p.forn_id
                    WHERE prod_descricao LIKE ?`;
             parametros = ['%' + termo + '%'];
         }
         else {
             sql = `SELECT * FROM produto p
-                   INNER JOIN categoria c ON p.fk_codigo_cat = c.codigo 
+                   INNER JOIN categoria c ON p.fk_codigo_cat = c.codigo
+                   INNER JOIN fornecedor f ON f.forn_id = p.forn_id
                    WHERE prod_codigo = ?`
             parametros = [termo];
         }

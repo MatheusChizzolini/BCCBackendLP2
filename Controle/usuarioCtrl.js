@@ -1,7 +1,7 @@
 import Usuario from "../Modelo/usuario.js";
 
 export default class UsuarioCtrl{
-    gravar(req, res) 
+    gravar(req, res)
     {
         res.type("application/json");
         if (req.method == 'POST' && req.is("application/json"))
@@ -52,7 +52,7 @@ export default class UsuarioCtrl{
         res.type("application/json");
         if (req.method == 'DELETE')
         {
-            const nome = req.body.nome;
+            const nome = req.params.nome;
             if (nome)
             {
                 const usuario = new Usuario(nome);
@@ -90,16 +90,18 @@ export default class UsuarioCtrl{
         res.type("application/json");
         if ((req.method == 'PUT' || req.method == 'PATCH') && req.is("application/json")){
             const nome = req.body.nome;
+            const email = req.body.email;
             const senha = req.body.senha;
             const senhaConfirmada = req.body.senhaConfirmada;
             const privilegio = req.body.privilegio;
 
             if (nome &&
+                email &&
                 senha &&
                 senhaConfirmada &&
                 privilegio)
             {
-                const usuario = new Usuario(nome, "", senha, senhaConfirmada, privilegio);
+                const usuario = new Usuario(nome, email, senha, senhaConfirmada, privilegio);
                 usuario.editar()
                 .then(()=>{
                     res.status(200).json({

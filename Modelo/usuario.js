@@ -17,7 +17,7 @@ export default class Usuario {
     get nome() { return this.#nome; }
     get email() { return this.#email; }
     get senha() { return this.#senha; }
-    get senhaConfirmada() { return this.#senha; }
+    get senhaConfirmada() { return this.#senhaConfirmada; }
     get privilegio() { return this.#privilegio; }
 
     set nome(novoNome) { this.#nome = novoNome; }
